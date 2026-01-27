@@ -1,15 +1,14 @@
 import React from 'react'
-import Home from '@/components/Home/Home'
 import BackgroundRippleEffectDemo from "@/components/ui/BackgroundRippleEffectDemo";
-
-
+import{ CardHoverEffectDemo} from "@/components/Home/Skills/Skillsdata"
 const page = () => {
   return (
     <>
        <BackgroundRippleEffectDemo />
-       <Home />
+        <CardHoverEffectDemo/>
+       
       
-    </>
+    </> 
   );
 };
 
