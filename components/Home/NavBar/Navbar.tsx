@@ -11,11 +11,12 @@ const Navbar = () => {
           }`}
       >
         {[
-          { label: "HOME", href: "#home" },
+          { label: "ABOUT", href: "#about" },
           { label: "SKILLS", href: "#Skills" },
           { label: "PROJECT", href: "#project" },
           { label: "SERVICES", href: "#services" },
           { label: "RESUME", href: "#resume" },
+          { label: "CONTACT", href: "#contact" },
         ].map((item) => (
           <li
             key={item.href}
