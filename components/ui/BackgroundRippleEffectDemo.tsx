@@ -9,7 +9,7 @@ export default function BackgroundRippleEffectDemo() {
 
   return (
     <div
-      className={`relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden transition-colors duration-300 ${isDark ? "bg-black" : "bg-white"
+      className={`relative flex h-5xl min-h-screen w-full flex-col items-start justify-start overflow-hidden transition-colors duration-300 ${isDark ? "bg-black" : "bg-white"
         }`}
     >
       <Navbar/>
@@ -24,7 +24,7 @@ export default function BackgroundRippleEffectDemo() {
       >
         {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
       </button>
-      <BackgroundRippleEffect isDark={isDark} />
+      <BackgroundRippleEffect isDark={isDark}  />
       <div className="mt-60 w-full">
         <h2
           className={`relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold md:text-4xl lg:text-7xl transition-colors duration-300 ${isDark ? "text-neutral-100" : "text-neutral-800"
