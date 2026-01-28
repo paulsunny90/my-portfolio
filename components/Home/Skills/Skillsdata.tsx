@@ -6,7 +6,9 @@ import { HoverEffect } from "@/components/ui/card-hover-effect"
 export function CardHoverEffectDemo() {
     const [isDark, setIsDark] = useState(true);
   return (
-    <div className={`p-20 text-center ${isDark ? "bg-black " : " bg-white"
+    <div 
+    id="Skills"
+    className={`p-20 text-center ${isDark ? "bg-black " : " bg-white"
         }`}>
           <h1 className="` text-3xl font-bold tracking-wide text-zinc-900 dark:text-zinc-100">SKIILES</h1>
       <HoverEffect items={projects} />

@@ -223,7 +223,7 @@ const Project = () => {
             transition={{ duration: 0.6 }}
           >
             {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.title} project={project} />
             ))}
           </motion.div>
         </div>

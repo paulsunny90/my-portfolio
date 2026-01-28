@@ -53,7 +53,7 @@ const Services = () => {
   ];
 
   return (
-    <section
+    <section id="services"
       className={`min-h-screen py-20 px-4 ${
         isDark ? "bg-black " : "bg-white"
       }`}
