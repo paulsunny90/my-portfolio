@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+
+import React, { useRef, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   Github,
   Globe,
@@ -11,6 +13,7 @@ import {
 } from "lucide-react";
 
 type ProjectType = {
+  id: number;
   title: string;
   tech: string[];
   description: string;
@@ -21,158 +24,208 @@ type ProjectType = {
 
 const projects: ProjectType[] = [
   {
-    title: "E‑Commerce Dashboard",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
+    id: 1,
+    title: "Double-Barrel",
+    tech: ["React", "Tailwind", "TypeScript", "Redux", "MongoDB","Node.js","Express.js"],
     description:
-      "Admin dashboard for managing products, orders, and users with secure authentication and responsive UI.",
+      "Full-stack e-commerce app with cart, checkout, and admin roles.",
     images: [
-      "https://images.pexels.com/photos/6801641/pexels-photo-6801641.jpeg",
-      "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg",
+      "/Screenshot 2026-01-28 094005.png",
+     
     ],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
-    title: "MERN Storefront",
-    tech: ["React", "Redux Toolkit", "Node.js", "Express", "MongoDB"],
+    id: 2,
+    title: "React + Tailwind Website",
+    tech: ["React", "Tailwind CSS"],
     description:
-      "Full‑stack e‑commerce application with cart, checkout, and role‑based access control for admins.",
+      "Modern responsive web application with clean UI and fast performance.",
     images: [
-      "https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg",
-      "https://images.pexels.com/photos/5632382/pexels-photo-5632382.jpeg",
+      "/Screenshot 2026-01-28 094250.png",
+      "/Screenshot 2026-01-28 094314.png",
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://website-using-react-xi.vercel.app/",
+    githubUrl: "https://github.com/paulsunny90/Website-Using-React",
   },
   {
-    title: "Portfolio Website",
-    tech: ["Next.js", "Framer Motion", "Tailwind CSS"],
+    id: 3,
+    title: "Contact Management Application",
+    tech: ["HTML","CSS","JavaScript","Node.js","Express.js"],
     description:
-      "Modern personal portfolio with smooth animations, dark theme, and responsive layout.",
+      "web application is a full-featured Contact Management System.",
     images: [
-      "https://images.pexels.com/photos/2706379/pexels-photo-2706379.jpeg",
-      "https://images.pexels.com/photos/2706378/pexels-photo-2706378.jpeg",
+      "/Screenshot 2026-01-28 103416.png",
+      "/Screenshot 2026-01-28 103507.png",
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://manage-dashboard-seven.vercel.app/",
+    githubUrl: "https://github.com/paulsunny90/Contact-Management-App",
+  },
+  {
+    id: 3,
+    title: "weather-app",
+    tech: ["HTML","Tailwind CSS","JavaScript","API"],
+    description:
+      " A responsive weather application .",
+    images: [
+      "/Screenshot 2026-01-28 103609 copy.png",
+    ],
+    liveUrl: "https://weather-delta-steel.vercel.app/",
+    githubUrl: "https://github.com/paulsunny90/weather-app",
   },
 ];
 
+const CARD_WIDTH = 420;
+
+/* ================= CARD ================= */
+
 const ProjectCard = ({ project }: { project: ProjectType }) => {
   const [index, setIndex] = useState(0);
-  const total = project.images.length || 1;
-  const currentImage = project.images[index] ?? project.images[0];
-
-  const handlePrev = () => {
-    setIndex((prev) => (prev - 1 + total) % total);
-  };
-
-  const handleNext = () => {
-    setIndex((prev) => (prev + 1) % total);
-  };
+  const total = project.images.length;
 
   return (
-    <article className="group relative flex h-full flex-col rounded-2xl border border-zinc-800 bg-neutral-950/70 shadow-[0_0_40px_rgba(0,0,0,0.6)] transition-transform transition-colors duration-300 hover:-translate-y-1 hover:border-zinc-600">
-      {/* Image carousel */}
-      <div className="relative h-44 w-full overflow-hidden rounded-t-2xl border-b border-zinc-800 bg-zinc-900">
-        {currentImage && (
-          <Image
-            src={currentImage}
-            alt={project.title}
-            fill
-            className="object-cover"
-          />
-        )}
+    <motion.article
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 200, damping: 18 }}
+      className="min-w-[420px] rounded-2xl border border-zinc-800 bg-zinc-950/80 shadow-xl backdrop-blur"
+    >
+      {/* Image */}
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.4 }}
+        className="relative h-44 w-full overflow-hidden rounded-t-2xl border-b border-zinc-800"
+      >
+        <Image
+          src={project.images[index]}
+          alt={project.title}
+          fill
+          className="object-cover"
+        />
+
         {total > 1 && (
           <>
             <button
-              type="button"
-              onClick={handlePrev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-1 text-zinc-100 hover:bg-black/80"
+              onClick={() =>
+                setIndex((prev) => (prev - 1 + total) % total)
+              }
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-1 text-white hover:bg-black"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft size={16} />
             </button>
             <button
-              type="button"
-              onClick={handleNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-1 text-zinc-100 hover:bg-black/80"
+              onClick={() =>
+                setIndex((prev) => (prev + 1) % total)
+              }
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-1 text-white hover:bg-black"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight size={16} />
             </button>
-            <div className="pointer-events-none absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1">
-              {project.images.map((_, i) => (
-                <span
-                  key={i}
-                  className={`h-1.5 w-1.5 rounded-full ${
-                    i === index ? "bg-zinc-100" : "bg-zinc-500"
-                  }`}
-                />
-              ))}
-            </div>
           </>
         )}
-      </div>
+      </motion.div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-xl font-semibold text-zinc-50">
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-white">
           {project.title}
         </h3>
-        <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
+
+        <p className="mt-3 text-sm text-zinc-400">
           {project.description}
         </p>
 
-        <ul className="mt-4 flex flex-wrap gap-2 text-[11px] font-medium text-zinc-300">
-          {project.tech.map((t) => (
+        <ul className="mt-4 flex flex-wrap gap-2 text-[11px]">
+          {project.tech.map((tech) => (
             <li
-              key={t}
-              className="rounded-full border border-zinc-700 bg-zinc-900/70 px-3 py-1"
+              key={tech}
+              className="rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-zinc-300"
             >
-              {t}
+              {tech}
             </li>
           ))}
         </ul>
 
-        <div className="mt-6 flex items-center gap-4 text-sm text-zinc-300">
+        <div className="mt-6 flex gap-4 text-sm">
           <a
             href={project.liveUrl}
-            className="inline-flex items-center gap-1 rounded-full border border-zinc-700 px-3 py-1 transition-colors hover:border-zinc-400 hover:text-zinc-50"
+            className="inline-flex items-center gap-1 rounded-full border border-zinc-700 px-3 py-1 text-zinc-300 transition hover:border-zinc-400 hover:text-white"
           >
-            <Globe className="h-4 w-4" />
-            <span>Live Demo</span>
-            <ExternalLink className="h-3 w-3" />
+            <Globe size={16} />
+            Live
+            <ExternalLink size={12} />
           </a>
           <a
             href={project.githubUrl}
-            className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-zinc-100"
+            className="inline-flex items-center gap-1 text-zinc-400 transition hover:text-white"
           >
-            <Github className="h-4 w-4" />
-            <span>Code</span>
+            <Github size={16} />
+            Code
           </a>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
+/* ================= SECTION ================= */
+
 const Project = () => {
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const slide = (dir: "left" | "right") => {
+    sliderRef.current?.scrollBy({
+      left: dir === "left" ? -CARD_WIDTH : CARD_WIDTH,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section className="w-full bg-black py-20 px-4" id="project">
-      <div className="mx-auto max-w-6xl">
-        <header className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-wide text-zinc-100">
+    <section id="project" className="bg-black px-4 py-20">
+      <div className="mx-auto max-w-7xl relative">
+        {/* Title */}
+        <motion.header
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-center"
+        >
+          <h2 className="text-4xl font-bold text-white">
             Projects
           </h2>
-          <p className="mt-3 text-sm md:text-base text-zinc-400">
-            A selection of recent work, focused on full‑stack MERN and modern
-            frontend development.
+          <p className="mt-3 text-zinc-400">
+            Interactive, animated & modern work
           </p>
-        </header>
+        </motion.header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
+        {/* Slider */}
+        <div className="relative">
+          <button
+            onClick={() => slide("left")}
+            className="absolute -left-5 top-1/2 z-10 -translate-y-1/2 rounded-full bg-zinc-900 p-2 text-white hover:bg-zinc-800"
+          >
+            <ChevronLeft size={22} />
+          </button>
+
+          <button
+            onClick={() => slide("right")}
+            className="absolute -right-5 top-1/2 z-10 -translate-y-1/2 rounded-full bg-zinc-900 p-2 text-white hover:bg-zinc-800"
+          >
+            <ChevronRight size={22} />
+          </button>
+
+          <motion.div
+            ref={sliderRef}
+            className="flex gap-6 overflow-hidden"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            {projects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

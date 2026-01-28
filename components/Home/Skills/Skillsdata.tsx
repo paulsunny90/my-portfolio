@@ -19,7 +19,7 @@ export const projects = [
     image: "https://nixrajput.com/skills/javascript.svg",
     image1: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
     description:
-      "JavaScript, TypeScript, Python, and more programming languages for modern web development.",
+      "Core programming languages including JavaScript, TypeScript essential for web and software development.",
     link: "#",
   },
   {
@@ -30,7 +30,7 @@ export const projects = [
     image3: "https://nixrajput.com/skills/css.svg",
     image4: "https://nixrajput.com/skills/redux.svg",
     description:
-      "A JavaScript library for building user interfaces with component-based architecture.",
+      "Technologies for building interactive and responsive user interfaces, including React, Next.js, HTML, CSS, and Redux.",
     link: "#",
   },
   {
@@ -38,7 +38,7 @@ export const projects = [
     image: "https://nixrajput.com/skills/nodejs.svg",
     image1: "https://nixrajput.com/skills/express.svg",
     description:
-      "A React framework for production with server-side rendering and static site generation.",
+      "Server-side development with Node.js and Express for building scalable and efficient web applications.",
     link: "#",
   },
   {
@@ -47,7 +47,7 @@ export const projects = [
     image1: "",
     image2: "",
     description:
-      "A JavaScript runtime built on Chrome's V8 JavaScript engine for server-side development.",
+      "Database solutions like MongoDB for storing, retrieving, and managing application data efficiently.",
     link: "#",
   },
   {
@@ -55,7 +55,7 @@ export const projects = [
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
     image1: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
     description:
-      "A distributed version control system for tracking changes in source code during software development.",
+      "Version control tools Git and GitHub for managing code changes, collaboration, and project history.",
     link: "#",
   },
   {
@@ -63,7 +63,7 @@ export const projects = [
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
     image1: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg",
     description:
-      "A vector graphics editor and prototyping tool which is primarily web-based.",
+      "Design and prototyping tools Figma and Photoshop for creating user interfaces, graphics, and visual assets.",
     link: "#",
   },
 ];
