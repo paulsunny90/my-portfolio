@@ -1,12 +1,9 @@
 "use client";
 
-
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import Image from "next/image";
-
-
 
 const getImageName = (src: string) => {
   const name = src.split("/").pop()?.split(".")[0] ?? "";
@@ -19,7 +16,6 @@ const getImageName = (src: string) => {
 export const HoverEffect = ({
   items = [],
   className,
-  
 }: {
   items?: {
     title: string;
@@ -34,12 +30,18 @@ export const HoverEffect = ({
   className?: string;
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  
 
   if (!items.length) return null;
 
   return (
-    <div className={cn("grid grid-cols-1 md:grid-cols-3 gap-6 py-10", className)}>
+    <div
+      className={cn(
+        // Responsive grid
+        "grid gap-4 py-10 px-2",
+        "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+        className
+      )}
+    >
       {items.map((item, idx) => {
         const images = [
           item.image,
@@ -71,27 +73,26 @@ export const HoverEffect = ({
 
             <Card>
               {images.length > 0 && (
-                <div className="flex flex-wrap justify-center gap-4 mb-4">
+                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-4">
                   {images.map((img, i) => (
                     <div
                       key={i}
-                      className="flex flex-col items-center text-[11px] 
+                      className="flex flex-col items-center text-[10px] sm:text-[11px]
                                  text-zinc-700 dark:text-zinc-300"
                     >
                       <div
-                        className="p-2 rounded-xl 
-                                   bg-zinc-100 dark:bg-zinc-900
-                                   group-hover:scale-110 transition"
+                        className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-900
+                                   group-hover:scale-110 transition-transform duration-300"
                       >
                         <Image
                           src={img}
                           alt={getImageName(img)}
-                          width={40}
-                          height={40}
-                          className="object-contain"
+                          width={32}
+                          height={32}
+                          className="object-contain sm:h-10 sm:w-10"
                         />
                       </div>
-                      <span className="mt-1">{getImageName(img)}</span>
+                      <span className="mt-1 text-center">{getImageName(img)}</span>
                     </div>
                   ))}
                 </div>
@@ -107,7 +108,6 @@ export const HoverEffect = ({
   );
 };
 
-
 export const Card = ({
   className,
   children,
@@ -118,34 +118,32 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "relative z-20 rounded-2xl p-4 h-full transition-colors",
+        "relative z-20 rounded-2xl p-3 sm:p-4 h-full transition-colors",
         "bg-white dark:bg-black",
         "border border-zinc-200 dark:border-white/10",
         "group-hover:border-zinc-400 dark:group-hover:border-zinc-600",
         className
       )}
     >
-      <div className="relative z-50 p-4">{children}</div>
+      <div className="relative z-50 p-2 sm:p-4">{children}</div>
     </div>
   );
 };
 
 export const CardTitle = ({
-  
   className,
   children,
-}: 
-{
+}: {
   className?: string;
   children: React.ReactNode;
-})=> {
-  const [isDark, setIsDark] = useState(true);
-  
+}) => {
   return (
     <h4
       className={cn(
-        `mt-4 font-bold tracking-wide text-zinc-900 dark:text-zinc-100  ${isDark ? "text-neutral-100" : "text-neutral-800"
-          }`)}
+        "mt-4 text-center font-bold tracking-wide text-base sm:text-lg",
+        "text-zinc-900 dark:text-zinc-100",
+        className
+      )}
     >
       {children}
     </h4>
@@ -162,7 +160,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-4 text-sm leading-relaxed",
+        "mt-3 text-center text-xs sm:text-sm leading-relaxed",
         "text-zinc-600 dark:text-zinc-400",
         className
       )}

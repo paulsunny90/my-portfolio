@@ -1,44 +1,45 @@
-import React, { useState } from 'react'
+"use client";
 
-const Navbar = () => {
-  
-  const [isDark, setIsDark] = useState(true);
+import React from "react";
+import Link from "next/link";
 
+const navItems = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#project" },
+  { name: "Services", href: "#services" },
+  { name: "Contact", href: "#contact" },
+];
+
+export default function Navbar() {
   return (
-    <ul
-        id="navbar"
-        className={`flex gap-10 pl-16 pt-10 justify-center items-center font-medium tracking-wide transition-colors duration-300 ${isDark ? "text-neutral-400" : "text-neutral-600"
-          }`}
-      >
-        {[
-          { label: "ABOUT", href: "#about" },
-          { label: "SKILLS", href: "#Skills" },
-          { label: "PROJECT", href: "#project" },
-          { label: "SERVICES", href: "#services" },
-          { label: "CONTACT", href: "#contact" },
-        ].map((item) => (
-          <li
-            key={item.href}
-            id={`nav-${item.label.toLowerCase()}`}
-            className={`relative cursor-pointer transition-all duration-300
-        hover:-translate-y-1 
-        ${isDark
-                ? "hover:text-white after:bg-white"
-                : "hover:text-black after:bg-black"
-              }
-        after:absolute after:left-0 after:-bottom-1
-        after:h-[2px] after:w-0
-        after:transition-all after:duration-300
-        hover:after:w-full
-      `}
-          >
-            <a href={item.href} className="block">
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-  )
-}
+    <nav className="fixed top-0 z-50 w-full bg-black/60 backdrop-blur-md border-b border-neutral-800">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        {/* Logo */}
+        <span className="text-xl font-bold text-white">
+          Paul<span className="text-blue-500">Sunny</span>
+        </span>
 
-export default Navbar
+        {/* Links */}
+        <ul className="flex items-center gap-8">
+          {navItems.map((item) => (
+            <li key={item.name} className="group relative">
+              <Link
+                href={item.href}
+                className="text-sm font-medium text-neutral-300 transition-colors hover:text-white"
+              >
+                {item.name}
+              </Link>
+
+              {/* Hover underline */}
+              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+
+              {/* Glow effect */}
+              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-blue-500 blur-md opacity-0 transition-all duration-300 group-hover:w-full group-hover:opacity-100"></span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+}

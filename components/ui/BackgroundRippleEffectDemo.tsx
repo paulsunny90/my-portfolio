@@ -8,7 +8,7 @@ export default function BackgroundRippleEffectDemo() {
   return (
     <div id="#about" className="relative min-h-screen w-full overflow-hidden bg-black">
       {/* Navbar */}
-      <div className="relative z-10 w-full px-4 text-center">
+      <div className="relative z-10 w-full px-4 text-center  ">
         <Navbar />
       </div>
 

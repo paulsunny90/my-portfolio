@@ -88,13 +88,13 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
     <motion.article
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ type: "spring", stiffness: 200, damping: 18 }}
-      className="min-w-[420px] rounded-2xl border border-zinc-800 bg-zinc-950/80 shadow-xl backdrop-blur"
+      className="w-full  max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg rounded-2xl border border-zinc-800 bg-zinc-950/80 shadow-xl backdrop-blur mx-auto"
     >
-      {/* Image */}
+      {/* Image Carousel */}
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.4 }}
-        className="relative h-44 w-full overflow-hidden rounded-t-2xl border-b border-zinc-800"
+        className="relative h-48 sm:h-40 w-full overflow-hidden rounded-t-2xl border-b border-zinc-800"
       >
         <Image
           src={project.images[index]}
@@ -106,49 +106,47 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
         {total > 1 && (
           <>
             <button
-              onClick={() =>
-                setIndex((prev) => (prev - 1 + total) % total)
-              }
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-1 text-white hover:bg-black"
+              onClick={() => setIndex((prev) => (prev - 1 + total) % total)}
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-2 sm:p-1 text-white hover:bg-black"
             >
-              <ChevronLeft size={16} />
+              <ChevronLeft size={20} />
             </button>
             <button
-              onClick={() =>
-                setIndex((prev) => (prev + 1) % total)
-              }
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-1 text-white hover:bg-black"
+              onClick={() => setIndex((prev) => (prev + 1) % total)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-2 sm:p-1 text-white hover:bg-black"
             >
-              <ChevronRight size={16} />
+              <ChevronRight size={20} />
             </button>
           </>
         )}
       </motion.div>
 
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-white">
+      <div className="p-5 sm:p-4">
+        <h3 className="text-lg sm:text-base font-semibold text-white">
           {project.title}
         </h3>
 
-        <p className="mt-3 text-sm text-zinc-400">
+        <p className="mt-2 text-sm sm:text-xs text-zinc-400">
           {project.description}
         </p>
 
-        <ul className="mt-4 flex flex-wrap gap-2 text-[11px]">
+        <ul className="mt-3 flex flex-wrap gap-2 text-[10px] sm:text-[9px]">
           {project.tech.map((tech) => (
             <li
               key={tech}
-              className="rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-zinc-300"
+              className="rounded-full border border-zinc-700 bg-zinc-900 px-2 py-0.5 sm:px-1 sm:py-0 text-zinc-300"
             >
               {tech}
             </li>
           ))}
         </ul>
 
-        <div className="mt-6 flex gap-4 text-sm">
+        <div className="mt-4 flex flex-wrap gap-3 text-sm sm:text-xs">
           <a
             href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1 rounded-full border border-zinc-700 px-3 py-1 text-zinc-300 transition hover:border-zinc-400 hover:text-white"
           >
             <Globe size={16} />
@@ -157,6 +155,8 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
           </a>
           <a
             href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-zinc-400 transition hover:text-white"
           >
             <Github size={16} />
