@@ -6,17 +6,14 @@ import Navbar from "../Home/NavBar/Navbar";
 
 export default function BackgroundRippleEffectDemo() {
   return (
-    <div id="#about" className="relative min-h-screen w-full overflow-hidden bg-black">
-      {/* Navbar */}
-      <div className="relative z-10 w-full px-4 text-center  ">
-        <Navbar />
-      </div>
+    <div id="about" className="relative min-h-screen w-full overflow-hidden bg-black">
+      <Navbar />
 
       {/* Background Effect (always dark) */}
       <BackgroundRippleEffect isDark />
 
       {/* Hero Content */}
-      <div className="relative z-10 mt-60 w-full px-4 text-center">
+      <div className="relative z-10 mt-40 md:mt-60 w-full px-4 text-center">
         <h2 className="mx-auto max-w-4xl text-3xl font-bold text-neutral-100 md:text-5xl lg:text-7xl">
           Paul Sunny
         </h2>

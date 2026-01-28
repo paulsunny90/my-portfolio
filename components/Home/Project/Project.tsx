@@ -1,7 +1,6 @@
 "use client";
 
-
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -11,6 +10,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+
+/* ================= TYPES ================= */
 
 type ProjectType = {
   id: number;
@@ -22,6 +23,8 @@ type ProjectType = {
   githubUrl: string;
 };
 
+/* ================= DATA ================= */
+
 const projects: ProjectType[] = [
   {
     id: 1,
@@ -29,10 +32,7 @@ const projects: ProjectType[] = [
     tech: ["React", "Tailwind", "TypeScript", "Redux", "MongoDB","Node.js","Express.js"],
     description:
       "Full-stack e-commerce app with cart, checkout, and admin roles.",
-    images: [
-      "/Screenshot 2026-01-28 094005.png",
-     
-    ],
+    images: ["/Screenshot 2026-01-28 094005.png"],
     liveUrl: "#",
     githubUrl: "#",
   },
@@ -54,7 +54,7 @@ const projects: ProjectType[] = [
     title: "Contact Management Application",
     tech: ["HTML","CSS","JavaScript","Node.js","Express.js"],
     description:
-      "web application is a full-featured Contact Management System.",
+      "Full-featured Contact Management System.",
     images: [
       "/Screenshot 2026-01-28 103416.png",
       "/Screenshot 2026-01-28 103507.png",
@@ -63,22 +63,17 @@ const projects: ProjectType[] = [
     githubUrl: "https://github.com/paulsunny90/Contact-Management-App",
   },
   {
-    id: 3,
-    title: "weather-app",
+    id: 4,
+    title: "Weather App",
     tech: ["HTML","Tailwind CSS","JavaScript","API"],
-    description:
-      " A responsive weather application .",
-    images: [
-      "/Screenshot 2026-01-28 103609 copy.png",
-    ],
+    description: "A responsive weather application.",
+    images: ["/Screenshot 2026-01-28 103609 copy.png"],
     liveUrl: "https://weather-delta-steel.vercel.app/",
     githubUrl: "https://github.com/paulsunny90/weather-app",
   },
 ];
 
-const CARD_WIDTH = 420;
-
-/* ================= CARD ================= */
+/* ================= CARD COMPONENT ================= */
 
 const ProjectCard = ({ project }: { project: ProjectType }) => {
   const [index, setIndex] = useState(0);
@@ -88,13 +83,13 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
     <motion.article
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ type: "spring", stiffness: 200, damping: 18 }}
-      className="w-full  max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg rounded-2xl border border-zinc-800 bg-zinc-950/80 shadow-xl backdrop-blur mx-auto"
+      className="w-full rounded-2xl border border-zinc-800 bg-zinc-950/80 shadow-xl backdrop-blur"
     >
       {/* Image Carousel */}
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.4 }}
-        className="relative h-48 sm:h-40 w-full overflow-hidden rounded-t-2xl border-b border-zinc-800"
+        className="relative h-48 sm:h-44 w-full overflow-hidden rounded-t-2xl border-b border-zinc-800"
       >
         <Image
           src={project.images[index]}
@@ -168,21 +163,23 @@ const ProjectCard = ({ project }: { project: ProjectType }) => {
   );
 };
 
-/* ================= SECTION ================= */
+/* ================= PROJECT SECTION ================= */
 
 const Project = () => {
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(0);
+  const total = projects.length;
 
-  const slide = (dir: "left" | "right") => {
-    sliderRef.current?.scrollBy({
-      left: dir === "left" ? -CARD_WIDTH : CARD_WIDTH,
-      behavior: "smooth",
-    });
+  const next = () => {
+    setCurrent((prev) => (prev + 1) % total); // infinite loop
+  };
+
+  const prev = () => {
+    setCurrent((prev) => (prev - 1 + total) % total); // infinite loop
   };
 
   return (
-    <section id="project" className="bg-black px-4 py-20">
-      <div className="mx-auto max-w-7xl relative">
+    <section id="project" className="bg-black px-4 py-20 overflow-hidden">
+      <div className="mx-auto max-w-7xl">
         {/* Title */}
         <motion.header
           initial={{ opacity: 0, y: 30 }}
@@ -191,41 +188,47 @@ const Project = () => {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="text-4xl font-bold text-white">
-            Projects
-          </h2>
+          <h2 className="text-4xl font-bold text-white">Projects</h2>
           <p className="mt-3 text-zinc-400">
             Interactive, animated & modern work
           </p>
         </motion.header>
 
-        {/* Slider */}
+        {/* Carousel */}
         <div className="relative">
+          {/* LEFT BUTTON */}
           <button
-            onClick={() => slide("left")}
-            className="absolute -left-5 top-1/2 z-10 -translate-y-1/2 rounded-full bg-zinc-900 p-2 text-white hover:bg-zinc-800"
+            onClick={prev}
+            className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/70 p-3 text-white hover:bg-zinc-800"
           >
             <ChevronLeft size={22} />
           </button>
 
+          {/* RIGHT BUTTON */}
           <button
-            onClick={() => slide("right")}
-            className="absolute -right-5 top-1/2 z-10 -translate-y-1/2 rounded-full bg-zinc-900 p-2 text-white hover:bg-zinc-800"
+            onClick={next}
+            className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/70 p-3 text-white hover:bg-zinc-800"
           >
             <ChevronRight size={22} />
           </button>
 
-          <motion.div
-            ref={sliderRef}
-            className="flex gap-6 overflow-hidden"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </motion.div>
+          {/* SLIDES */}
+          <div className="overflow-hidden px-12">
+            <motion.div
+              animate={{ x: `-${current * 100}%` }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="flex gap-6"
+            >
+              {projects.map((project) => (
+                <div
+                  key={project.id}
+                  className="min-w-full md:min-w-[50%] lg:min-w-[33.333%]"
+                >
+                  <ProjectCard project={project} />
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

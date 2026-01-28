@@ -13,7 +13,7 @@ const navItems = [
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 z-50 w-full bg-black/60 backdrop-blur-md border-b border-neutral-800">
+    <nav className="fixed left-0 top-0 z-50 w-full border-b border-neutral-800 bg-black/60 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <span className="text-xl font-bold text-white">
@@ -21,7 +21,7 @@ export default function Navbar() {
         </span>
 
         {/* Links */}
-        <ul className="flex items-center gap-8">
+        <ul className="flex items-center gap-4 sm:gap-6 md:gap-8">
           {navItems.map((item) => (
             <li key={item.name} className="group relative">
               <Link
