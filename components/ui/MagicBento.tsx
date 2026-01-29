@@ -16,10 +16,11 @@ export interface BentoCardProps {
     color?: string;
     title?: string;
     description?: string;
-    icon?: string;
+    icon?: ReactNode;
     label?:string
     textAutoHide?: boolean;
     disableAnimations?: boolean;
+
     
 }
 
@@ -209,7 +210,7 @@ const ParticleCard: React.FC<{
                     });
                 }, index * 100);
 
-                timeoutsRef.current.push(timeoutId);
+                // timeoutsRef.current.push(timeoutId);
             });
         }, [initializeParticles]);
 
