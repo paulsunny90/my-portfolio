@@ -12,6 +12,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import type { ReactNode } from "react";
+
 export interface BentoCardProps {
     color?: string;
     title?: string;
