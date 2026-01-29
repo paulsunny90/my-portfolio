@@ -1,20 +1,42 @@
 "use client";
-import React, { useState } from "react";
-import { HoverEffect } from "@/components/ui/card-hover-effect"
 
+import React, { useState } from "react";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
 
 export function CardHoverEffectDemo() {
-    const [isDark, setIsDark] = useState(true);
+  const [isDark] = useState(true);
+
   return (
-    <div 
-    id="Skills"
-    className={`p-20 text-center ${isDark ? "bg-black " : " bg-white"
-        }`}>
-          <h1 className="` text-3xl font-bold tracking-wide text-zinc-900 dark:text-zinc-100">SKIILES</h1>
-      <HoverEffect items={projects} />
-    </div>
+    <section
+      id="Skills"
+      className={`
+        w-full
+        ${isDark ? "bg-black text-white" : "bg-white text-black"}
+        px-4 sm:px-6 md:px-10
+        py-12 sm:py-16 md:py-20
+      `}
+    >
+      <div className="mx-auto max-w-7xl text-center">
+        {/* Heading */}
+        <h1
+          className="
+            mb-4
+            text-2xl sm:text-3xl md:text-4xl
+            font-bold tracking-widest
+          "
+        >
+          SKILLS
+        </h1>
+
+   
+
+        {/* Skill Cards */}
+        <HoverEffect items={projects} />
+      </div>
+    </section>
   );
 }
+
 export const projects = [
   {
     title: "Programming Languages",

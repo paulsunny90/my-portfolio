@@ -12,8 +12,9 @@ const page = () => {
         <Services/>
         <Project/>
         <Contact/>
-       
       
+    
+
     </> 
   );
 };

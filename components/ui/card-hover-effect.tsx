@@ -73,30 +73,40 @@ export const HoverEffect = ({
 
             <Card>
               {images.length > 0 && (
-                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-4">
-                  {images.map((img, i) => (
-                    <div
-                      key={i}
-                      className="flex flex-col items-center text-[10px] sm:text-[11px]
-                                 text-zinc-700 dark:text-zinc-300"
-                    >
-                      <div
-                        className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-900
-                                   group-hover:scale-110 transition-transform duration-300"
-                      >
-                        <Image
-                          src={img}
-                          alt={getImageName(img)}
-                          width={32}
-                          height={32}
-                          className="object-contain sm:h-10 sm:w-10"
-                        />
-                      </div>
-                      <span className="mt-1 text-center">{getImageName(img)}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
+  <div
+    className="
+      grid mb-4 gap-3 sm:gap-4  place-items-center
+      grid-cols-3
+      sm:grid-cols-4
+      md:grid-cols-5
+    "
+  >
+    {images.map((img, i) => (
+      <div
+        key={i}
+        className="flex flex-col items-center text-[10px] sm:text-[11px]
+                   text-zinc-700 dark:text-zinc-300"
+      >
+        <div
+          className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-900
+                     group-hover:scale-110 transition-transform duration-300"
+        >
+          <Image
+            src={img}
+            alt={getImageName(img)}
+            width={32}
+            height={32}
+            className="object-contain sm:h-10 sm:w-10"
+          />
+        </div>
+        <span className="mt-1 text-center">
+          {getImageName(img)}
+        </span>
+      </div>
+    ))}
+  </div>
+)}
+
 
               <CardTitle>{item.title}</CardTitle>
               <CardDescription>{item.description}</CardDescription>
