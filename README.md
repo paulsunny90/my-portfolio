@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Paul Sunny - MERN Stack Developer Portfolio
 
-## Getting Started
+A premium, high-performance portfolio website built with modern web technologies. This project showcases technical expertise in the MERN stack through a sophisticated, interactive, and fully responsive user interface.
 
-First, run the development server:
+## 🚀 Live Demo
+[View Portfolio](https://your-portfolio-link.vercel.app/)
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Contact Service**: [EmailJS](https://www.emailjs.com/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+## ✨ Key Features
+
+- **Dynamic Hero Section**: Interactive background ripple effects with a premium profile presentation.
+- **Interactive Experience Timeline**: A custom-built vertical timeline featuring scroll-linked progress and dual-column layouts (Technical vs. Academic).
+- **Responsive Project Carousel**: A touch-friendly, paginated carousel that adjusts item counts based on device size.
+- **Advanced Skills Grid**: High-end hover effects on skill cards with direct links to official documentation for each technology.
+- **Bento-style Services**: Modern grid layout for services with spotlight effects and interactive cards.
+- **Theme Synchronization**: Seamless dark and light mode transitions with a focus on a "Pure Black" dark theme.
+- **Contact Form**: Fully functional contact form integrated with EmailJS for direct communication.
+
+## 📁 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+├── app/                  # App router pages and layouts
+├── components/           # UI components
+│   ├── Home/             # Section-specific components (Hero, Skills, Projects, etc.)
+│   └── ui/               # Reusable atomic UI components (Bento, Ripple, etc.)
+├── lib/                  # Utility functions and contexts
+├── public/               # Static assets (images, profile photo, resume)
+└── next.config.ts        # Configuration for image domains and build settings
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Setup & Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/paulsunny90/my-portfolio.git
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Configure Environment Variables:**
+   Create a `.env.local` or update the keys in `components/Home/contact/contact.tsx` for EmailJS:
+   - `SERVICE_ID`
+   - `TEMPLATE_ID`
+   - `PUBLIC_KEY`
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.

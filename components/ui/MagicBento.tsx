@@ -3,6 +3,8 @@
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
+import { motion } from "framer-motion";
+import { useTheme } from "@/lib/ThemeContext";
 import {
   Code,
   Globe,
@@ -507,16 +509,13 @@ const BentoCardGrid: React.FC<{
     children: React.ReactNode;
     gridRef?: React.RefObject<HTMLDivElement | null>;
 }> = ({ children, gridRef }) => (
-<div className="flex justify-center items-center min-h-screen">
   <div
-    className="bento-section grid gap-2 p-3  select-none relative"
+    className="bento-section grid gap-2 p-3 select-none relative mx-auto"
     style={{ fontSize: 'clamp(1rem, 0.9rem + 0.5vw, 1.5rem)' }}
     ref={gridRef}
   >
     {children}
   </div>
-</div>
-
 );
 
 const useMobileDetection = () => {
@@ -548,6 +547,8 @@ const MagicBento: React.FC<BentoProps> = ({
     enableMagnetism = true
 }) => {
     const gridRef = useRef<HTMLDivElement>(null);
+    const { theme } = useTheme();
+    const isDark = theme === "dark";
     const isMobile = useMobileDetection();
     const shouldDisableAnimations = disableAnimations || isMobile;
 
@@ -555,23 +556,18 @@ const MagicBento: React.FC<BentoProps> = ({
         <>
             <style>
                 {`
-                body {
-          background: #020008;
-        }
-              
           .bento-section {
             --glow-x: 50%;
             --glow-y: 50%;
             --glow-intensity: 0;
             --glow-radius: 200px;
             --glow-color: ${glowColor};
-            --border-color: #392e4e;
-            --background-dark: #060010;
-            --white: hsl(0, 0%, 100%);
+            --border-color: ${isDark ? '#392e4e' : '#e5e7eb'};
+            --background-dark: ${isDark ? '#060010' : '#ffffff'};
+            --white: ${isDark ? 'hsl(0, 0%, 100%)' : 'hsl(0, 0%, 0%)'};
             --purple-primary: rgba(132, 0, 255, 1);
             --purple-glow: rgba(132, 0, 255, 0.2);
             --purple-border: rgba(132, 0, 255, 0.8);
-            
           }
           
           .card-responsive {
@@ -688,7 +684,11 @@ const MagicBento: React.FC<BentoProps> = ({
                 <div className="card-responsive grid gap-2 p-20 max-md:p-0">
                     {cardData.map((card, index) => {
                         const baseClassName = `
-  card relative flex flex-col justify-betweenw-full min-h-[180px] sm:min-h-[200px] lg:min-h-[220px] p-5 rounded-2xl bg-gradient-to-br from-[#141414] to-[#0c0c0c] border border-white/10 text-white font-light overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_10px_40px_rgba(0,0,0,0.6)]
+  card relative flex flex-col justify-between w-full min-h-[180px] sm:min-h-[200px] lg:min-h-[220px] p-5 rounded-2xl border font-light overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 ${
+    isDark 
+      ? 'bg-gradient-to-br from-[#141414] to-[#0c0c0c] border-white/10 text-white hover:border-white/20 hover:shadow-[0_10px_40px_rgba(0,0,0,0.6)]' 
+      : 'bg-white border-black/5 text-black hover:border-black/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] shadow-sm'
+  }
   ${enableBorderGlow ? 'card--border-glow' : ''}
 `;
 
@@ -718,15 +718,20 @@ const MagicBento: React.FC<BentoProps> = ({
                                     enableMagnetism={enableMagnetism}
                                 >
                                     
-                                    <div className="card__header flex justify-between gap-3 relative text-white">
-                                        <span className="card__label text-base mb-4 text-blue-400">{ card.icon}</span>
+                                    <div className={`card__header flex justify-between gap-3 relative ${isDark ? 'text-white' : 'text-black'}`}>
+                                        <motion.span 
+                                            whileHover={{ scale: 1.2, rotate: 10 }}
+                                            className="card__label text-base mb-4 text-blue-400"
+                                        >
+                                            { card.icon}
+                                        </motion.span>
                                     </div>
-                                    <div className="card__content flex flex-col relative text-white">
-                                        <h3 className={`card__title text-xl font-semibold text-zinc-100 mb-3 ${textAutoHide ? 'text-clamp-1' : ''}`}>
+                                    <div className={`card__content flex flex-col relative ${isDark ? 'text-white' : 'text-black'}`}>
+                                        <h3 className={`card__title text-xl font-semibold mb-3 ${textAutoHide ? 'text-clamp-1' : ''} ${isDark ? 'text-zinc-100' : 'text-black'}`}>
                                             {card.title}
                                         </h3>
                                         <p
-                                            className={`card__description text-sm text-zinc-400 leading-relaxed  ${textAutoHide ? 'text-clamp-2' : ''}`}
+                                            className={`card__description text-sm leading-relaxed ${textAutoHide ? 'text-clamp-2' : ''} ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}
                                         >
                                             {card.description}
                                         </p>

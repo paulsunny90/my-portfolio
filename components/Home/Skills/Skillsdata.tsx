@@ -2,15 +2,17 @@
 
 import React, { useState } from "react";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { motion } from "framer-motion";
+import { useTheme } from "@/lib/ThemeContext";
 
 export function CardHoverEffectDemo() {
-  const [isDark] = useState(true);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   return (
     <section
-      id="Skills"
       className={`
-        w-full
+        w-full transition-colors duration-500
         ${isDark ? "bg-black text-white" : "bg-white text-black"}
         px-4 sm:px-6 md:px-10
         py-12 sm:py-16 md:py-20
@@ -18,20 +20,27 @@ export function CardHoverEffectDemo() {
     >
       <div className="mx-auto max-w-7xl text-center">
         {/* Heading */}
-        <h1
-          className="
-            mb-4
-            text-2xl sm:text-3xl md:text-4xl
-            font-bold tracking-widest
-          "
+        <motion.h1
+          id="Skills"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl font-bold tracking-tight mb-6"
         >
-          SKILLS
-        </h1>
-
-   
+          <span className={isDark ? "text-white" : "text-black"}>Technical </span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">Skills</span>
+        </motion.h1>
 
         {/* Skill Cards */}
-        <HoverEffect items={projects} />
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <HoverEffect items={projects} />
+        </motion.div>
       </div>
     </section>
   );
@@ -44,7 +53,7 @@ export const projects = [
     image1: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
     description:
       "Core programming languages including JavaScript, TypeScript essential for web and software development.",
-    link: "#",
+    links: ["https://developer.mozilla.org/en-US/docs/Web/JavaScript", "https://www.typescriptlang.org/"],
   },
   {
     title: "Frontend Development",
@@ -52,27 +61,36 @@ export const projects = [
     image1: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
     image2: "https://nixrajput.com/skills/html.svg",
     image3: "https://nixrajput.com/skills/css.svg",
-    image4: "https://nixrajput.com/skills/redux.svg",
+    image4: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
+    image5: "https://nixrajput.com/skills/redux.svg",
     description:
-      "Technologies for building interactive and responsive user interfaces, including React, Next.js, HTML, CSS, and Redux.",
-    link: "#",
+      "Technologies for building interactive and responsive user interfaces, including React, Next.js, HTML, CSS, Tailwind CSS, and Redux.",
+    links: [
+      "https://react.dev/",
+      "https://nextjs.org/",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS",
+      "https://tailwindcss.com/",
+      "https://redux.js.org/"
+    ],
   },
   {
     title: "Backend Development",
     image: "https://nixrajput.com/skills/nodejs.svg",
     image1: "https://nixrajput.com/skills/express.svg",
+    image2: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
     description:
-      "Server-side development with Node.js and Express for building scalable and efficient web applications.",
-    link: "#",
+      "Server-side development with Node.js and Express, using Postman for API testing and development.",
+    links: ["https://nodejs.org/", "https://expressjs.com/", "https://www.postman.com/"],
   },
   {
     title: "Database Management",
     image: "https://nixrajput.com/skills/mongodb.svg",
-    image1: "",
-    image2: "",
+    image1: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    image2: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
     description:
-      "Database solutions like MongoDB for storing, retrieving, and managing application data efficiently.",
-    link: "#",
+      "Database solutions like MongoDB, PostgreSQL, and MySQL for storing and managing application data efficiently.",
+    links: ["https://www.mongodb.com/", "https://www.postgresql.org/", "https://www.mysql.com/"],
   },
   {
     title: "Git",
@@ -80,7 +98,7 @@ export const projects = [
     image1: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
     description:
       "Version control tools Git and GitHub for managing code changes, collaboration, and project history.",
-    link: "#",
+    links: ["https://git-scm.com/", "https://github.com/"],
   },
   {
     title: "Figma",
@@ -88,6 +106,6 @@ export const projects = [
     image1: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg",
     description:
       "Design and prototyping tools Figma and Photoshop for creating user interfaces, graphics, and visual assets.",
-    link: "#",
+    links: ["https://www.figma.com/", "https://www.adobe.com/products/photoshop.html"],
   },
 ];
