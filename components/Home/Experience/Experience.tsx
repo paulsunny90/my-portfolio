@@ -8,36 +8,36 @@ import { Briefcase, GraduationCap, Calendar } from "lucide-react";
 const experiences = [
   {
     title: "MERN Stack Developer Intern",
-    organization: "Freelance / Self-Employed",
-    period: "Jul 2025 - Present",
+    organization: "Synnefo Solutions",
+    period: "Jun 2025 - Present",
     description: "Developed and maintained full-stack web applications using MongoDB, Express.js, React, and Node.js.",
-    tech: ["React", "Node.js", "MongoDB", "Express"]
+    tech: ["HTML","TypeScript","CSS","React", "Node.js", "MongoDB", "Express","Redux Toolkit"]
   },
-  {
-    title: "Full-Stack Developer Intern",
-    organization: "Personal Projects",
-    period: "Apr 2024 - May 2024",
-    description: "Built responsive user interfaces with React and TypeScript. Integrated RESTful APIs and worked on database optimization.",
-    tech: ["TypeScript", "Tailwind CSS", "API", "GSAP"]
-  }
+  // {
+  //   title: "Full-Stack Developer Intern",
+  //   organization: "Personal Projects",
+  //   period: "Apr 2024 - May 2024",
+  //   description: "Built responsive user interfaces with React and TypeScript. Integrated RESTful APIs and worked on database optimization.",
+  //   tech: ["TypeScript", "Tailwind CSS", "API", "GSAP"]
+  // }
 ];
 
 const educations = [
   {
-    title: "Diploma in Information Technology",
-    organization: "Government Polytechnic College, Purapuzha",
-    period: "2022 - 2025",
-    description: "Focused on core IT concepts, software development, and network management. Gained hands-on experience in various programming languages.",
+    title: "Diploma in Computer Engineering ",
+    organization: "Ilahia Polytechnic College, muvattupuzha",
+    period: "2023 - 2025",
+    description: "Focused on core Computer Engineering and IT concepts, software development, and network management, with hands-on experience across multiple programming languages.",
   },
   {
     title: "Higher Secondary Education",
-    organization: "GOVT HSS Muppathadam, Aluva, Kerala",
-    period: "2022",
-    description: "Completed higher secondary education with a focus on science and mathematics.",
+    organization: "Govt.VHSS Tripunithura, Tripunithura,Kerala",
+    period: "2023",
+    description: "Completed higher secondary education with a focus on science and mathematics; trained as a Field Technician in computer peripherals..",
   },
   {
     title: "Secondary Education",
-    organization: "GOVT HS West Kadungalloor, Aluva, Kerala",
+    organization: "GOVT HSS KADAYIRUPPU, Kadayirippu, Kerala",
     period: "2021",
     description: "Foundational education with strong academic performance.",
   }
